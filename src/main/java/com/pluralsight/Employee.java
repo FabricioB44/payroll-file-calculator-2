@@ -26,6 +26,15 @@ public class Employee {
         );
     }
 
+    public String toJson() {
+        return String.format(
+                "  { \"id\": %d, \"name\": \"%s\", \"grossPay\": %.2f }",
+                employeeId,
+                name,
+                getGrossPay()
+        );
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }

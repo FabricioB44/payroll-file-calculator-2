@@ -36,10 +36,30 @@ public class PayrollCalculator {
                 index++;
             }
 
-            for (Employee employee : employees) {
-                if (employee != null) {
-                    bufferedWriter.write(employee.toString());
-                    bufferedWriter.newLine();
+            if (newFile.getName().endsWith(".json")) {
+                bufferedWriter.write("[");
+                bufferedWriter.newLine();
+
+                for (int i = 0; i < employees.length; i++) {
+                    if (employees[i] != null) {
+
+                        bufferedWriter.write(employees[i].toJson());
+
+                        if (i < employees.length - 1 && employees[i + 1] != null) {
+                            bufferedWriter.write(",");
+                        }
+
+                        bufferedWriter.newLine();
+                    }
+                }
+
+                bufferedWriter.write("]");
+            } else {
+                for (Employee employee : employees) {
+                    if (employee != null) {
+                        bufferedWriter.write(employee.toString());
+                        bufferedWriter.newLine();
+                    }
                 }
             }
 
